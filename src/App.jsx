@@ -1,3 +1,5 @@
+import "./styles/Global.css";
+
 import { Post } from "./Post";
 
 export const App = () => {
