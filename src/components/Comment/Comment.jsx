@@ -13,7 +13,9 @@ export const Comment = ({ content, onDeleteCommit }) => {
   };
 
   const handleLinkCommit = () => {
-    setLinkCount(likeCount + 1);
+    setLinkCount((state) => {
+      return state + 1;
+    });
   };
 
   return(
