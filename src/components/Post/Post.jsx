@@ -28,6 +28,7 @@ export const Post = ({ author, publishedAt, content}) => {
   };
 
   const handleNewCommitChange = () => {
+    event.target.setCustomValidity("");
     setNewCommitText(event.target.value);
   };
 
@@ -38,6 +39,12 @@ export const Post = ({ author, publishedAt, content}) => {
 
     setComments(commentsWithoutDeletedOne);
   };
+
+  const handleNewCommitInvalid = () => {
+    event.target.setCustomValidity("Esse campo é obrigatório");
+  };
+
+  const isNewCommentEmpty = newCommitText.length === 0;
 
   return(
     <article className={Styles.post}>
@@ -73,10 +80,12 @@ export const Post = ({ author, publishedAt, content}) => {
           placeholder="Deixe um comentário"
           onChange={handleNewCommitChange}
           value={newCommitText}
+          required
+          onInvalid={handleNewCommitInvalid}
         />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" disabled={isNewCommentEmpty}>Publicar</button>
         </footer>
       </form>
 
