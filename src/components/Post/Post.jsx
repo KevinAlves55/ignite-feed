@@ -31,6 +31,14 @@ export const Post = ({ author, publishedAt, content}) => {
     setNewCommitText(event.target.value);
   };
 
+  const deleteCommit = (commentToDelete) => {
+    const commentsWithoutDeletedOne = comments.filter(comment => {
+      return comment !== commentToDelete;
+    });
+
+    setComments(commentsWithoutDeletedOne);
+  };
+
   return(
     <article className={Styles.post}>
       <header>
@@ -74,7 +82,7 @@ export const Post = ({ author, publishedAt, content}) => {
 
       <div className={Styles.commentList}>
         {comments.map(comment => (
-          <Comment key={comment} content={comment} />
+          <Comment key={comment} content={comment} onDeleteCommit={deleteCommit} />
         ))}
       </div>
     </article>
